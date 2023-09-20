@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <br><ion-title>Weather Application</ion-title><br>
+    <ion-label>By. Marsya Papona</ion-label><br><br>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar [(ngModel)]="location" placeholder="Search"></ion-searchbar>
+  <ion-button id="button" expand="full" (click)="getWeather()">Search Weather</ion-button>
+  
+  <ion-card *ngIf="weatherData" class="cardStyle">
+    <ion-item>
+      <p>Today's Report</p>
+      <ion-label id="date" slot="end">{{todayDate | date : "EEE dd MMM YYY"}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="location" id="location"></ion-icon>
+      <ion-label>{{ weatherData.name }}</ion-label>
+    </ion-item>
+
+    <ion-card-content>
+      <img [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '.png'" alt="Weather Icon" [title]="weatherData.weather[0].description">
+      <p>{{ weatherData.weather[0].description }}</p>
+      <h2 id="h2">{{ (weatherData.main.temp - 273.15).toFixed(2) }}°C</h2>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
